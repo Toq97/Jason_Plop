@@ -50,8 +50,8 @@ function putToLocalhost () {
 
     putRequest.send(
         JSON.stringify({
-            name: 'John Smith',
-            age: 34
+            "name": "John Smith",
+            "age": 34
             })
     );
 }

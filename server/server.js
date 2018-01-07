@@ -22,13 +22,12 @@ var server = http.createServer((request, response) => {
         response.writeHead(200, 'OK', { 'content-type': 'application/json' });
         //read file
         var luke = '';
-        fs.readFile('./data/luke.json', function(err, data) {
+        fs.readFile('./data/luke.json',  function(err, data) {
             if (err) {
                 console.log('file read error', err);
             }
-            luke = JSON.parse(data);
-            console.log( JSON.stringify(luke));
-            response.end(JSON.stringify(luke));
+            console.log(data.toString());
+            response.end(data.toString());
         });
         if(request.method === 'GET'){
             var luke = '';
@@ -36,9 +35,8 @@ var server = http.createServer((request, response) => {
                 if (err) {
                     console.log('file read error', err);
                 }
-                luke = JSON.parse(data);
-                console.log( JSON.stringify(luke));
-                response.end(JSON.stringify(luke));
+                console.log(data.toString('utf8'));
+                response.end(data.toString('utf8'));
             });
             console.log('chiamata Get ricevuta');
         }
@@ -50,16 +48,16 @@ var server = http.createServer((request, response) => {
             request.on('data', function(data) {
                 body += data;
                 console.log("responde body: " + body);
-                luke = JSON.parse(body);
-                console.log(typeof luke.toString());
-                lukeString = luke.toString();
-                fs.writeFile('./data/luke.json', lukeString, (err) => {  
+                //luke = JSON.parse(body);
+                console.log(typeof body);
+                //lukeString = luke.toString();
+                fs.writeFile('./data/luke.json', body, (err) => {  
                     if(err) throw err;
                     console.log('Data written to file');
                 });
 
                 console.log('This is after the write call');  
-                response.end(lukeString);
+                response.end(body);
             })
             
         }
