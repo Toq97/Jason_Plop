@@ -29,6 +29,8 @@ var server = http.createServer((request, response) => {
             console.log(data.toString());
             response.end(data.toString());
         });
+
+
         if(request.method === 'GET'){
             var luke = '';
             fs.readFile('./data/luke.json', function(err, data) {
@@ -48,9 +50,7 @@ var server = http.createServer((request, response) => {
             request.on('data', function(data) {
                 body += data;
                 console.log("responde body: " + body);
-                //luke = JSON.parse(body);
                 console.log(typeof body);
-                //lukeString = luke.toString();
                 fs.writeFile('./data/luke.json', body, (err) => {  
                     if(err) throw err;
                     console.log('Data written to file');
