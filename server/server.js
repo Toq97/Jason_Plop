@@ -1,10 +1,10 @@
 var http = require('http');
 var fs = require('fs');
 
-var luke = {
+/*var luke = {
     nome: 'Luke',
     cognome: 'Skywalker'
-};
+};*/
 
 var server = http.createServer((request, response) => {
 
@@ -21,31 +21,47 @@ var server = http.createServer((request, response) => {
     if(request.url === '/'){
         response.writeHead(200, 'OK', { 'content-type': 'application/json' });
         //read file
-        /*var luke = '';
+        var luke = '';
         fs.readFile('./data/luke.json', function(err, data) {
             if (err) {
                 console.log('file read error', err);
             }
             luke = JSON.parse(data);
-            console.log(typeof luke);*/
+            console.log( JSON.stringify(luke));
             response.end(JSON.stringify(luke));
-       // });
-        
+        });
         if(request.method === 'GET'){
-            response.end(JSON.stringify(luke));
+            var luke = '';
+            fs.readFile('./data/luke.json', function(err, data) {
+                if (err) {
+                    console.log('file read error', err);
+                }
+                luke = JSON.parse(data);
+                console.log( JSON.stringify(luke));
+                response.end(JSON.stringify(luke));
+            });
             console.log('chiamata Get ricevuta');
         }
 
         if(request.method === 'PUT'){
             console.log('chiamata PUT');
             var body = '';
+
             request.on('data', function(data) {
                 body += data;
                 console.log("responde body: " + body);
                 luke = JSON.parse(body);
+                console.log(typeof luke.toString());
+                lukeString = luke.toString();
+                fs.writeFile('./data/luke.json', lukeString, (err) => {  
+                    if(err) throw err;
+                    console.log('Data written to file');
+                });
+
+                console.log('This is after the write call');  
+                response.end(lukeString);
             })
-            //console.log(request.body);
-           response.end(request.body);
+            
         }
 
         if(request.method === 'POST'){
@@ -55,7 +71,16 @@ var server = http.createServer((request, response) => {
 
     } else if(request.url === '/goodbye'){
         response.writeHead(200, 'OK', { 'content-type': 'application/json' });
-        response.end('{ "nome" : "Luke", "cognome" : "de giorgis"}');
+        var luke = '';
+        fs.readFile('./data/fake-luke.json', function(err, data) {
+            if (err) {
+                console.log('file read error', err);
+            }
+            luke = JSON.parse(data);
+            console.log( JSON.stringify(luke));
+            response.end(JSON.stringify(luke));
+        });
+        console.log('chiamata Get ricevuta');
     }
 });
 
