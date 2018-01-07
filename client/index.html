@@ -3,15 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <title>Page Title</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Client</h1>
+    <h1 class="title">JSON Plop</h1>
     <p>Fate occhio che quando fate la put cambiate i dati dentro il file .json, quindi i dati di Luke si perdono definitivamente.
         Dopo averla fatta andate nel file e annullate la modifica per tornare ai dati originali.
     </p>
-    <button id="get-localhost">Get From Localhost</button>
-    <button id="get-goodbye">Get From Goodbye</button>
-    <button id="put-localhost">Put To Localhost</button>
+    <div class="requestbutton"><button id="get-localhost">Get From Localhost</button></div>
+   <div class="requestbutton"><button id="get-goodbye">Get From Goodbye</button></div>
+   <div class="requestbutton"><button id="put-localhost">Put To Localhost</button></div>
     <script src="client.js"></script>
 </body>
 </html>

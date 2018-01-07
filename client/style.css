@@ -1,0 +1,48 @@
+/**
+ * @author: group 05
+ * Contain the style of the jsonplop page
+ */
+body{
+  background-color: white;
+}
+
+.title {
+
+  font-size: 45px;
+  margin-left: 50%;
+
+}
+
+
+.requestbutton{
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+
+#get-localhost{
+
+  height: 50px;
+  width: 100%;
+  font-size: 20px;
+  background-color: yellow;
+
+}
+
+#get-goodbye{
+
+  height: 50px;
+  width: 100%;
+  font-size: 20px;
+  background-color: yellow;
+}
+
+
+
+#put-localhost{
+
+  height: 50px;
+  width: 100%;
+  font-size: 20px;
+  background-color: red;
+}
